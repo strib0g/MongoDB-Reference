@@ -74,8 +74,8 @@ public class Main {
 		//8. Finding with nested conditions
 		finder.printMany(finder.findWithFilter(Filters.and
 				(
-						Filters.lt("_id", 20), 
-						Filters.gt("_id", 10)
+						Filters.gt("_id", 10),
+						Filters.lt("_id", 20)
 						)
 				));
 		

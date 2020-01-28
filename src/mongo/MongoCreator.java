@@ -14,6 +14,7 @@ import java.util.function.Consumer;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
+//Handles insertion, replacement and bulk operations in a database
 public class MongoCreator {
 
 	private MongoCollection<Document> collection;
@@ -30,14 +31,20 @@ public class MongoCreator {
 		collection.insertMany(docs);
 	}
 	
+	//Finds document via query and replaces it with provided document
 	public void replace(Bson query, Document document) {
 		collection.replaceOne(query, document);
 	}
 	
+	//Inserts a list of docs using bulkWrite
 	public void bulkInsert(List<Document> docs) {
-		
+		//Creates a list of InsertOneModels that contain documents
+		//InsertOneModels can be replaced by UpdateOneModels, DeleteOneModels
+		//All of these extend the WriteModel object, so one could use it
+		//To create a list w/ different models
 		List<InsertOneModel<Document>> list = new ArrayList<InsertOneModel<Document>>();
 		
+		//For loop wraps every document in a InsertOneModel and adds it to the list
 		for(int i = 0; i < docs.size(); i++) {
 			list.add(new InsertOneModel<>(docs.get(i)));
 		}

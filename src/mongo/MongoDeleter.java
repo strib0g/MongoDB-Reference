@@ -15,6 +15,7 @@ import java.util.function.Consumer;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
+//Handles all delete operations on a collection
 public class MongoDeleter {
 	private MongoCollection<Document> collection;
 	
